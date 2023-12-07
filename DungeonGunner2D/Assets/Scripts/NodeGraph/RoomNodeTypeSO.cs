@@ -3,7 +3,7 @@ using Utilities;
 
 namespace NodeGraph
 {
-    [CreateAssetMenu(fileName = "RoomNodeType", menuName = "Scriptable Objects/Dungeon/Room Node Type", order = 0)]
+    [CreateAssetMenu(fileName = "RoomNodeType_", menuName = "Scriptable Objects/Dungeon/Room Node Type", order = 0)]
     public class RoomNodeTypeSO : ScriptableObject
     {
         public string roomNodeTypeName;
