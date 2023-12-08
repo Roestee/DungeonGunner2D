@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8786452782649198791
+--- !u!114 &-1569838097792700199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,18 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a414ca5e77d74acb97aacd993d8c777f, type: 3}
   m_Name: RoomNode
   m_EditorClassIdentifier: 
-  id: 07c799d6-82e8-4c15-9680-343469012cce
+  id: cc4e334f-ddb6-40b3-848b-515a7d92c7fd
   parentRoomNodeIDList: []
   childRoomNodeIDList: []
   roomNodeGraph: {fileID: 11400000}
-  roomNodeType: {fileID: 11400000, guid: fd1f787be1e074a4ca3b2b2d5dca5450, type: 2}
   roomNodeTypeList: {fileID: 11400000, guid: 223d7f8af063ae247a419494ca98fe0d, type: 2}
+  roomNodeType: {fileID: 11400000, guid: 259b1b43ef0e09f41a1507294e3a8224, type: 2}
   rect:
     serializedVersion: 2
-    x: 174
-    y: 27
+    x: 225
+    y: 37
     width: 160
     height: 75
+  isDragging: 0
+  isSelected: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,4 +40,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomNodeTypeList: {fileID: 0}
   roomNodeList:
-  - {fileID: -8786452782649198791}
+  - {fileID: 6415255293118100990}
+  - {fileID: -1569838097792700199}
+--- !u!114 &6415255293118100990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a414ca5e77d74acb97aacd993d8c777f, type: 3}
+  m_Name: RoomNode
+  m_EditorClassIdentifier: 
+  id: 187dbb16-781b-4685-b05f-a9eb81177b27
+  parentRoomNodeIDList: []
+  childRoomNodeIDList: []
+  roomNodeGraph: {fileID: 11400000}
+  roomNodeTypeList: {fileID: 11400000, guid: 223d7f8af063ae247a419494ca98fe0d, type: 2}
+  roomNodeType: {fileID: 11400000, guid: ba82dad2e0db25e499991e9d12d759a1, type: 2}
+  rect:
+    serializedVersion: 2
+    x: 28
+    y: 37
+    width: 160
+    height: 75
+  isDragging: 0
+  isSelected: 0

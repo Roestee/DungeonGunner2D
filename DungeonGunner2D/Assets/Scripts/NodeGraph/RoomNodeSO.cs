@@ -12,12 +12,13 @@ namespace NodeGraph
         [HideInInspector] public List<string> parentRoomNodeIDList = new List<string>();
         [HideInInspector] public List<string> childRoomNodeIDList = new List<string>();
         [HideInInspector] public RoomNodeGraphSO roomNodeGraph;
-        [HideInInspector] public RoomNodeTypeSO roomNodeType;
         [HideInInspector] public RoomNodeTypeListSO roomNodeTypeList;
+        [HideInInspector] public RoomNodeTypeSO roomNodeType;
 
 #if UNITY_EDITOR
         
         [HideInInspector] public Rect rect;
+        [HideInInspector] public bool isDragging, isSelected;
 
         public void Init(Rect rect, RoomNodeGraphSO nodeGraph, RoomNodeTypeSO roomNodeType)
         {
@@ -56,6 +57,76 @@ namespace NodeGraph
 
             return roomArray;
         }
+
+        public void ProcessEvents(Event currentEvent)
+        {
+            switch (currentEvent.type)
+            {
+                case EventType.MouseDown:
+                    ProcessMouseDownEvent(currentEvent);
+                    break;
+                case EventType.MouseDrag:
+                    ProcessMouseDragEvent(currentEvent);
+                    break;
+                case EventType.MouseUp:
+                    ProcessMouseUpEvent(currentEvent);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ProcessMouseDownEvent(Event currentEvent)
+        {
+            if (currentEvent.button != 0)
+                return; 
+            
+            ProcessLeftClickDownEvent();
+        }
+
+        private void ProcessMouseDragEvent(Event currentEvent)
+        {
+            if (currentEvent.button != 0)
+                return;
+
+            ProcessLeftClickDragEvent(currentEvent);
+        }
+
+        private void ProcessMouseUpEvent(Event currentEvent)
+        {
+            if (currentEvent.button != 0)
+                return;
+
+            ProcessLeftClickUpEvent();
+        }
+        
+        private void ProcessLeftClickDownEvent()
+        {
+            Selection.activeObject = this;
+
+            isSelected = !isSelected;
+        }
+
+        private void ProcessLeftClickDragEvent(Event currentEvent)
+        {
+            isDragging = true;
+            
+            DragNode(currentEvent.delta);
+            GUI.changed = true;
+        }
+
+        private void ProcessLeftClickUpEvent()
+        {
+            if(isDragging)
+                isDragging = false;
+        }
+
+        private void DragNode(Vector2 delta)
+        {
+            rect.position += delta;
+            EditorUtility.SetDirty(this);
+        }
+
 #endif
     }
 }
