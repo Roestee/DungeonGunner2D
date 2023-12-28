@@ -55,7 +55,7 @@ namespace NodeGraph.Editor
             if(_currentRoomNode == null || !_currentRoomNode.isDragging)
                 _currentRoomNode = IsMouseOverRoomNode(currentEvent);
 
-            if (_currentRoomNode == null)
+            if (_currentRoomNode == null || _currentRoomNodeGraph.roomNodeToDrawLineFrom != null)
                 ProcessRoomNodeGraphEvents(currentEvent);
             else
                 _currentRoomNode.ProcessEvents(currentEvent);
@@ -82,17 +82,37 @@ namespace NodeGraph.Editor
                 case EventType.MouseDown:
                     ProcessMouseDownEvent(currentEvent);
                     break;
+                case EventType.MouseDrag:
+                    ProcessMouseDragEvent(currentEvent);
+                    break;
                 default:
                     break;
             }
         }
-
         private void ProcessMouseDownEvent(Event currentEvent)
         {
             if (currentEvent.button == 1)
-            {
                 ShowContextMenu(currentEvent.mousePosition);
+        }
+
+        private void ProcessMouseDragEvent(Event currentEvent)
+        {
+            if (currentEvent.button == 1)
+                ProcessRightMouseDragEvent(currentEvent);
+        }
+
+        private void ProcessRightMouseDragEvent(Event currentEvent)
+        {
+            if (_currentRoomNodeGraph.roomNodeToDrawLineFrom != null)
+            {
+                DragConnectingLine(currentEvent.delta);
+                GUI.changed = true;
             }
+        }
+
+        private void DragConnectingLine(Vector2 delta)
+        {
+            _currentRoomNodeGraph.linePosition += delta;
         }
 
         private void ShowContextMenu(Vector2 mousePosition)

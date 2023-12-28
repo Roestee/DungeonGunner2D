@@ -78,10 +78,10 @@ namespace NodeGraph
 
         private void ProcessMouseDownEvent(Event currentEvent)
         {
-            if (currentEvent.button != 0)
-                return; 
-            
-            ProcessLeftClickDownEvent();
+            if (currentEvent.button == 0)
+                ProcessLeftClickDownEvent();
+            else if (currentEvent.button == 1)
+                ProcessRightClickDownEvent(currentEvent);
         }
 
         private void ProcessMouseDragEvent(Event currentEvent)
@@ -105,6 +105,11 @@ namespace NodeGraph
             Selection.activeObject = this;
 
             isSelected = !isSelected;
+        }
+
+        private void ProcessRightClickDownEvent(Event currentEvent)
+        {
+            roomNodeGraph.SetNodeToDrawConnectionLineFrom(this, currentEvent.mousePosition);
         }
 
         private void ProcessLeftClickDragEvent(Event currentEvent)
